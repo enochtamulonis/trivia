@@ -1,4 +1,18 @@
-##### Prerequisites
+##### Assumptions for app
+  - A round of trivia has 10 Questions
+  - All questions are multiple-choice questions
+  - Data for questions are provided in a local JSON file.
+  - There is real time updates with stimulusjs.
+  - The score will increment depending on if your answer is correct.
+  - Also the color of the number and the button will change if your answer is correct.
+  - A user can view questions.
+  - Questions with their multiple choice options must be displayed one at a time.
+  - Questions should not repeat in a round.
+  - A user can select only 1 answer out of the 4 possible answers.
+  - The correct answer must be revealed after a user has submitted their answer
+  - A user can see the score they received at the end of the round
+
+##### Setup Prerequisites
 
 The setup steps expect the following tools to be installed on the system.
 
@@ -9,32 +23,19 @@ The setup steps expect the following tools to be installed on the system.
 ##### 1. Check out the repository
 
 ```bash
-git clone git@github.com:organization/project-name.git
+git clone https://github.com/yunggindigo/trivia.git
 ```
-
-##### 2. Create database.yml file
-
-Copy the sample database.yml file and edit the database configuration as required.
-
-```bash
-cp config/database.yml.sample config/database.yml
-```
-
-##### 3. Create and setup the database
-
-Run the following commands to create and setup the database.
+##### 2. Install the yarn packages for stimulusjs
 
 ```ruby
-bundle exec rake db:create
-bundle exec rake db:setup
+yarn install --check-files
 ```
-
-##### 4. Start the Rails server
+##### 3. Start the Rails server
 
 You can start the rails server using the command given below.
 
 ```ruby
-bundle exec rails s
+rails s
 ```
 
 And now you can visit the site with the URL http://localhost:3000
