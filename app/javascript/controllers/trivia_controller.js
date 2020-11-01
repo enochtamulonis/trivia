@@ -115,7 +115,7 @@ export default class extends ApplicationController {
         this.triviaBodyTarget.classList.toggle("hidden");
         this.resultsHolderTarget.classList.toggle("hidden");
         this.resultsHeaderTarget.innerHTML = `Your score is ${score}%`;
-        if (score > 70 ) {
+        if (score < 70 ) {
           this.resultsScoreHeaderTarget.innerHTML = mediumScoreText;
         } else {
           this.resultsScoreHeaderTarget.innerHTML = perfectScoreText
