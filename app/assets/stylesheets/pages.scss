@@ -1,0 +1,132 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.home {
+  min-height: 100vh;
+  width: 100%;
+  background-color: lightgray;
+}
+
+.card-size {
+  height: 90vh;
+  width: 85vw;
+}
+
+.banner {
+  width: 100%;
+  height: 8em;
+}
+
+.answerCard {
+  width: 18em;
+  height: 7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-half {
+  height: 50%;
+  width: 100%;
+}
+
+.responsive-flex {
+   display: flex;
+   justify-content: space-around;
+   align-items: flex-end;
+}
+
+.score {
+  height: 10em;
+  width: 100%;
+}
+
+.text-home {
+  width: 100%;
+  height: 50%;
+}
+
+//
+
+
+#startButton{
+  width: 200px;
+  height: 60px;
+  font-size: 18px;
+  border-radius: 4px;
+  font-family: 'Raleway', sans-serif;
+  transition: .6s;
+  overflow: hidden;
+  &:focus{
+    outline: 0;
+  }
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5;
+    filter: blur(30px);
+    transform: translateX(-100px)  skewX(-15deg);
+  }
+  &:after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100px) skewX(-15deg);
+  }
+  &:hover{
+    cursor: pointer;
+    &:before{
+      transform: translateX(300px)  skewX(-15deg);
+      opacity: 0.6;
+      transition: .7s;
+    }
+    &:after{
+      transform: translateX(300px) skewX(-15deg);
+      opacity: 1;
+      transition: .7s;
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .card-size {
+    height: 52em;
+    width: 94vw;
+  }
+
+  .answer-card {
+    width: 19em;
+  }
+}
+
+@media (max-width: 1300px) {
+  .answer-card {
+    width: 16em;
+  }
+
+  .card-size {
+    width: 98vw;
+  }
+}
+
+@media (max-width: 1050px) {
+  .answer-card {
+    width: 14em;
+  }
+
+  .card-size {
+    width: 100vw;
+  }
+
+}
