@@ -1,12 +1,14 @@
+
 <div class="card-size rounded bg-gray-200" data-controller="trivia" data-trivia-url="<%= @questions %>">
   <div class="w-full h-full flex flex-col items-center" data-target="trivia.cardDiv">
     <div class="text-home flex items-center justify-center" data-target="trivia.header">
-      <h1 class="text-3xl text-black">Tandem 10 Question Trivia</h1>
+      <h1 class="text-3xl text-black font-chill">Tandem 10 Question Trivia</h1>
     </div>
-    <%= button_to  "Start Trivia Game","#", :class => "px-8 py-2 bg-blue-beau rounded-sm text-xl text-black border border-black hover:bg-blue-cute cursor-pointer", id: "startButton" ,data: {action: "trivia#startTrivia"} %>
+    <%= button_to  "Start Trivia Game","#", :class => "font-chill px-8 py-2 bg-blue-beau rounded-sm text-xl text-black border border-black hover:bg-blue-cute cursor-pointer", id: "startButton" ,data: {action: "trivia#startTrivia"} %>
     <div class="w-full h-full flex flex-col items-center hidden" data-target="trivia.triviaBody">
       <div class="banner bg-gray-200 flex justify-center items-center py-2" data-target="trivia.banner">
-        <h2 class="text-4xl text-black" data-target="trivia.question"></h2>
+        <h2 class="text-4xl text-black font-chill" data-target="trivia.question"></h2>
+        <hr />
       </div>
       <div class="w-full h-full bg-gray-200 flex flex-col" data-target="trivia.answersHolder">
         <div class="card-half flex flex-col items-center">
@@ -15,15 +17,16 @@
             <h4 data-target="trivia.score"></h4>
             <h4>/10) Correct</h4>
           </div>
-          <h3 class="text-4xl" data-target="trivia.result"></h3>
+          <h3 class="text-4xl font-chill" data-target="trivia.result"></h3>
         </div>
         <div class="card-half responsive-flex pb-8" data-target="trivia.answers">
         </div>
       </div>
     </div>
     <div class="w-full h-full flex flex-col items-center pt-10 hidden" data-target="trivia.resultsHolder">
-      <div class="card-half flex justify-center items-center">
-        <h2 class="text-5xl my-10" data-target="trivia.resultsHeader"></h2>
+      <div class="card-half flex flex-col items-center">
+        <h2 class="text-4xl mt-10 mb-4" data-target="trivia.resultsScoreHeader"></h2>
+        <h2 class="text-4xl mb-10" data-target="trivia.resultsHeader"></h2>
       </div>
       <div class="card-half flex justify-center items-center">
         <%= link_to "Play again", "", :class => "px-8 py-2 border-2 border-black bg-transparent text-2xl rounded mt-10 hover:bg-blue-cutedark hover:opacity-75 hover:text-white transition-all duration-300" %>

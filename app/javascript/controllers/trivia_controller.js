@@ -12,7 +12,7 @@ let questionsCorrect
 let questionsAmount
 
 export default class extends ApplicationController {
-  static targets = ["result", "header", "banner","cardDiv", "triviaBody", "answersHolder", "answers", "question", "resultsHolder", "score", "resultsHeader"]
+  static targets = ["result", "header", "banner","cardDiv", "triviaBody", "answersHolder", "answers", "question", "resultsHolder", "score", "resultsHeader", "resultsScoreHeader"]
 
   connect () {
     super.connect()
@@ -53,7 +53,7 @@ export default class extends ApplicationController {
 }
 
   answerTemplate(answer) {
-    return `<div class="answerCard bg-blue-cute border-8 border-transparent rounded-lg cursor-pointer hover:shadow-xl hover:bg-blue-cutedark shadow-none transition-all duration-500"
+    return `<div class=" font-chill answerCard text-lg bg-blue-cute border-8 border-transparent rounded-lg cursor-pointer hover:shadow-xl hover:bg-blue-cutedark shadow-none transition-all duration-500"
       data-action="click->trivia#selectAnswer">${answer}</div>`;
   }
 
@@ -62,33 +62,69 @@ export default class extends ApplicationController {
     event.preventDefault();
     let currentQuestion = questionsJson[questionNumber];
     if (event.srcElement.innerHTML == currentQuestion.correct) {
-      this.resultTarget.innerHTML = "Your Answer Was Correct";
+      this.resultTarget.innerHTML = "Your answer was correct";
       event.srcElement.classList.add("border-green-500");
       questionsCorrect++;
       this.scoreTarget.innerHTML = questionsCorrect;
       this.scoreTarget.classList.toggle("text-green-600");
       setTimeout(() => {this.scoreTarget.classList.toggle("text-green-600");event.srcElement.classList.remove(`bg-blue-cutedark`); event.srcElement.classList.toggle(`bg-green-500`);}, 700);
     } else {
-      this.resultTarget.innerHTML = "Your Answer Was Incorrect";
+      this.resultTarget.innerHTML = "Your answer was incorrect";
       event.srcElement.classList.add("border-red-500");
       this.scoreTarget.innerHTML = questionsCorrect;
       this.scoreTarget.classList.toggle("text-red-600");
-      setTimeout(() => {this.scoreTarget.classList.toggle("text-red-600"); event.srcElement.classList.remove(`bg-blue-cutedark`); event.srcElement.classList.toggle("bg-red-500");}, 700);
+      setTimeout(() => {
+        this.scoreTarget.classList.toggle("text-red-600");
+        event.srcElement.classList.remove(`bg-blue-cutedark`);
+        event.srcElement.classList.toggle("bg-red-500");
+      }, 700);
+      setTimeout(() => {
+        for (let sibling of event.srcElement.parentNode.children) {
+          if (sibling.innerHTML == currentQuestion.correct) {
+            event.srcElement.classList.toggle("bg-red-500");
+            event.srcElement.classList.toggle("border-red-500");
+            sibling.classList.remove("bg-blue-cute");
+            sibling.classList.add("bg-green-600");
+            sibling.classList.remove("opacity-50");
+            this.resultTarget.innerHTML = `The correct answer was ${currentQuestion.correct}`
+          }
+        }
+      }, 2000);
     }
-    event.srcElement.classList.remove('bg-gray-100');
-    event.srcElement.classList.add('bg-white');
     for (let sibling of event.srcElement.parentNode.children) {
         if (sibling !== event.srcElement) sibling.classList.add('opacity-50');
         if (sibling == event.srcElement) sibling.classList.add('bg-blue-cutedark'); sibling.classList.remove("bg-blue-cute");
         sibling.dataset.action = "";
         sibling.classList.toggle("hover:bg-blue-cutedark")
+        sibling.classList.remove("hover:shadow-xl");
     }
     if (questionNumber < 9) {
       questionNumber++;
-      setTimeout(() => { this.resultTarget.innerHTML = ""; this.showQuestion();}, 2500);
+      let isCorrect = event.srcElement.innerHTML == currentQuestion.correct
+      let timeValue = (isCorrect ? 2500 : 4000);
+      setTimeout(() => {
+        this.resultTarget.innerHTML = "";
+        this.showQuestion();}, timeValue
+      );
     } else {
       let score = questionsCorrect * 10;
-      setTimeout(() => {this.triviaBodyTarget.classList.toggle("hidden"); this.resultsHolderTarget.classList.toggle("hidden"); this.resultsHeaderTarget.innerHTML = `Your final score is ${score}%`;}, 3000);
+      let resultsColor = score < 50 ? "text-red-600" : "text-green-600";
+      let perfectScoreText = "you should practice more "
+      let mediumScoreText = "wow you really know this stuff "
+      let lowScoreText = "you should practice more "
+      setTimeout(() => {
+        this.triviaBodyTarget.classList.toggle("hidden");
+        this.resultsHolderTarget.classList.toggle("hidden");
+        this.resultsHeaderTarget.innerHTML = `Your final score is ${score}%`;
+        if (score > 70 && score != 100 ) {
+          this.resultsScoreHeaderTarget.innerHTML = mediumScoreText;
+        }
+        if (score == 100) {
+          this.resultsScoreHeaderTarget.innerHTML = perfectScoreText
+        } else {
+          this.resultsScoreHeaderTarget.innerHTML = lowScoreText;
+        }
+      }, 3000);
     }
   }
 }
