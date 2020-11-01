@@ -25,12 +25,21 @@ The setup steps expect the following tools to be installed on the system.
 ```bash
 git clone https://github.com/yunggindigo/trivia.git
 ```
-##### 2. Install the yarn packages for stimulusjs
+
+##### 2. Bundle and create database
+  ```bash
+    bundle
+  ```
+  ```bash
+    rails db:create
+  ```
+
+##### 3. Install the yarn packages for stimulusjs
 
 ```ruby
 yarn install --check-files
 ```
-##### 3. Start the Rails server
+##### 4. Start the Rails server
 
 You can start the rails server using the command given below.
 
