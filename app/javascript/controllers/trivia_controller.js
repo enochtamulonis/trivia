@@ -109,20 +109,16 @@ export default class extends ApplicationController {
     } else {
       let score = questionsCorrect * 10;
       let resultsColor = score < 50 ? "text-red-600" : "text-green-600";
-      let perfectScoreText = "you should practice more "
-      let mediumScoreText = "wow you really know this stuff "
-      let lowScoreText = "you should practice more "
+      let perfectScoreText = "Great Job,"
+      let mediumScoreText = "Way to go,"
       setTimeout(() => {
         this.triviaBodyTarget.classList.toggle("hidden");
         this.resultsHolderTarget.classList.toggle("hidden");
-        this.resultsHeaderTarget.innerHTML = `Your final score is ${score}%`;
-        if (score > 70 && score != 100 ) {
+        this.resultsHeaderTarget.innerHTML = `Your score is ${score}%`;
+        if (score > 70 ) {
           this.resultsScoreHeaderTarget.innerHTML = mediumScoreText;
-        }
-        if (score == 100) {
-          this.resultsScoreHeaderTarget.innerHTML = perfectScoreText
         } else {
-          this.resultsScoreHeaderTarget.innerHTML = lowScoreText;
+          this.resultsScoreHeaderTarget.innerHTML = perfectScoreText
         }
       }, 3000);
     }
