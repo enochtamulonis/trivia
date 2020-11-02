@@ -9,12 +9,13 @@
   - The correct answer must be revealed after a user has submitted their answer
   - A user can see the score they received at the end of the round
 
-##### Custom Features
+##### Additional Features
   - Answers will be shuffled every round.
   - Questions will appear in a random order every session.
   - There is real time updates with stimulusjs.
   - The score will increment depending on if your answer is correct and change color.
   - Button will change color based on the answer and if its incorrect will then highlight the correct question.
+  
 ##### Setup Prerequisites
 
 The setup steps expect the following tools to be installed on the system.
