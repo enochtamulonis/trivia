@@ -7,7 +7,7 @@
     <%= button_to  "Start Trivia Game","#", :class => "font-chill px-8 py-2 bg-blue-beau rounded-sm text-xl text-black border border-black hover:bg-blue-cute cursor-pointer", id: "startButton" ,data: {action: "trivia#startTrivia"} %>
     <div class="w-full h-full flex flex-col items-center hidden" data-target="trivia.triviaBody">
       <div class="banner bg-gray-200 flex justify-center items-center py-2" data-target="trivia.banner">
-        <h2 class="text-4xl text-black font-chill" data-target="trivia.question"></h2>
+        <h2 class="text-4xl text-black text-center font-chill" data-target="trivia.question"></h2>
         <hr />
       </div>
       <div class="w-full h-full bg-gray-200 flex flex-col" data-target="trivia.answersHolder">
@@ -17,7 +17,7 @@
             <h4 data-target="trivia.score"></h4>
             <h4>/10) Correct</h4>
           </div>
-          <h3 class="text-4xl font-chill" data-target="trivia.result"></h3>
+          <h3 class="text-4xl font-chill text-center" data-target="trivia.result"></h3>
         </div>
         <div class="card-half responsive-flex pb-8" data-target="trivia.answers">
         </div>
